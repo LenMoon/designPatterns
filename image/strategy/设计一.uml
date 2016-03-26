@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>patterns.strategy.demo1</OriginalElement>
+  <nodes>
+    <node x="148.0" y="83.0">patterns.strategy.demo1.RedheadDuck</node>
+    <node x="0.0" y="83.0">patterns.strategy.demo1.MallerdDuck</node>
+    <node x="102.25" y="-30.0">patterns.strategy.demo1.Duck</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="patterns.strategy.demo1.RedheadDuck" target="patterns.strategy.demo1.Duck">
+      <point x="0.0" y="-16.5" />
+      <point x="216.5" y="58.0" />
+      <point x="158.25" y="58.0" />
+      <point x="18.0" y="16.5" />
+    </edge>
+    <edge source="patterns.strategy.demo1.MallerdDuck" target="patterns.strategy.demo1.Duck">
+      <point x="0.0" y="-16.5" />
+      <point x="64.0" y="58.0" />
+      <point x="122.25" y="58.0" />
+      <point x="-18.0" y="16.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="142.5" y="58.0" />
+  <SelectedNodes>
+    <node>patterns.strategy.demo1.Duck</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
