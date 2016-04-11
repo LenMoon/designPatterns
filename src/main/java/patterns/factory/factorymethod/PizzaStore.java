@@ -1,5 +1,6 @@
-package patterns.factory.abstractfactory;
+package patterns.factory.factorymethod;
 
+import patterns.factory.factorymethod.entity.Pizza;
 
 /**
  * Created by liumeng on 2016/4/10.

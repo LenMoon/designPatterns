@@ -1,4 +1,4 @@
-package patterns.factory.abstractfactory.entity;
+package patterns.factory.factorymethod.entity;
 
 import java.util.ArrayList;
 

@@ -1,22 +1,21 @@
 package patterns.factory.abstractfactory;
 
-import patterns.factory.abstractfactory.entity.Pizza;
-
 /**
- * Created by liumeng on 2016/4/10.
+ * Created by liumeng on 2016/4/11.
  */
 public class PizzaTestDriver {
+
     public static void main(String[] args) {
-        PizzaStore nyStore = new NYPizzaStore();
-        PizzaStore chicagoStore = new ChicagPizzaStore();
+        PizzaStore nypizzaStore = new NYPizzaStore();
+        PizzaStore chicagoPizzaStore = new ChicagoPizzaStore();
 
-        Pizza pizza = nyStore.orderPizza("cheese");
+        Pizza pizza = nypizzaStore.orderPizza("cheese");
 
-        System.out.println("ethan ordered a " + pizza.getName()+"\r\n");
+        System.out.println(pizza);
 
-        pizza = chicagoStore.orderPizza("cheese");
-        System.out.println("Jole ordered a "+pizza.getName()+"\r\n");
+        pizza = chicagoPizzaStore.orderPizza("cheese");
+        System.out.println(pizza);
+
 
     }
-
 }

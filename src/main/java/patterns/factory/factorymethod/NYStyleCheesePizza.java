@@ -1,8 +1,6 @@
-package patterns.factory.abstractfactory;
+package patterns.factory.factorymethod;
 
-import patterns.factory.abstractfactory.entity.Pizza;
-
-import javax.naming.Name;
+import patterns.factory.factorymethod.entity.Pizza;
 
 /**
  * Created by liumeng on 2016/4/10.
