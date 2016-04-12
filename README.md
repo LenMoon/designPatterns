@@ -7,6 +7,7 @@
     - 简单工厂模式（simplefactory pattern):其实简单工厂算不上是设计模式它只是简单地将创建对象的部分封装起来。 
     - 工厂方法模式（factorymethod pattern）：定义了一个创建对象的接口，但由子类决定要实例化的类时哪一个。工厂方法让类把实例化推迟到子类。
     - 抽象工厂模式(abstractfactory pattern):提供一个接口，用于创建相关或依赖对象的家族，而不需要明确指定具体类。
+_ 单例模式（Singleton pattern):确保一个类只有一个实例，并提供一个全局访问点。
 
 ##设计原则
 - 封装变化
@@ -145,3 +146,148 @@
 工厂方法提供一个接口，来创建一个产品，由每个自雷来决定实例化哪个具体类。    
 抽象工厂方法提供一个抽象接口来创建一个产品家族。    
 这两个模式都是将对象的创建过程封装起来，以便将代码从具体类解耦。
+
+##单例模式
+单例模式由于只有一个类就不画类图了，代理模式分为三种：
+1. 饿汉模式
+2. 懒汉模式
+3. 双重检验懒汉模式
+
+饿汉模式的例子：   
+```java
+public class Singleton {
+
+    private static Singleton singleton = new Singleton();
+
+    private Singleton() {
+
+    }
+
+    public static Singleton getInstance() {
+        return singleton;
+    }
+
+
+    public static void main(String[] args) {
+        final Set<Singleton> singletons = new HashSet<Singleton>();
+        for (int i = 0; i < 100000; i++) {
+            new Thread(new Runnable() {
+                public void run() {
+                    singletons.add(Singleton.getInstance());
+                }
+            }).start();
+        }
+
+        try {
+            Thread.sleep(5 * 60 * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(singletons);
+    }
+
+}
+```
+懒汉模式例子： 
+```java
+    public class Singleton {
+    
+        private static Singleton singleton = null;
+    
+        private Singleton() {
+    
+        }
+    
+        public static Singleton getInstance() {
+            if (singleton == null) {
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+    
+                singleton = new Singleton();
+    
+            }
+            return singleton;
+    
+        }
+    
+    
+        public static void main(String[] args) {
+            final Set<Singleton> singletons = new HashSet<Singleton>();
+            for (int i = 0; i < 100000; i++) {
+                new Thread(new Runnable() {
+                    public void run() {
+                        singletons.add(Singleton.getInstance());
+                    }
+                }).start();
+            }
+    
+            try {
+                Thread.sleep(5 * 60 * 1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println(singletons);
+        }
+    
+    }
+```
+
+双重检验饿汉模式：   
+```java
+public class Singleton {
+
+    private static volatile Singleton singleton = null;
+
+    private Singleton() {
+
+    }
+
+    public static Singleton getInstance() {
+        if (singleton == null) {
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            synorized(Singleton.class){
+                if (singleton == null) {
+                    singleton = new Singleton();
+                }
+            }
+
+
+        }
+        return singleton;
+
+    }
+
+
+    public static void main(String[] args) {
+        final Set<Singleton> singletons = new HashSet<Singleton>();
+        for (int i = 0; i < 100000; i++) {
+            new Thread(new Runnable() {
+                public void run() {
+                    singletons.add(Singleton.getInstance());
+                }
+            }).start();
+        }
+
+        try {
+            Thread.sleep(5 * 60 * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(singletons);
+    }
+
+}
+```
+
+>饿汉模式是最简单的单例模式,它类出初始化的是就创建对象并赋值给类的静态变量，优点是简单、没有第一次使用惩罚。缺点就是，有时候一个类的初始化会非常浪费资源，并且
+有可能在整个程序中，我们都没有使用这个类，这会造成资源上的浪费。
+懒汉模式是将对象的初始化延迟到使用的时候，但是带来了一个问题，在并发情况下，会导致严重的并发问题。
+双重检验懒汉模式，既保证对象的延迟初始化，又解决了并发问题，并且性能上也很好。
