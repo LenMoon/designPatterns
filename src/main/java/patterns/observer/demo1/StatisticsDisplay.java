@@ -1,6 +1,5 @@
 package patterns.observer.demo1;
 
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.LocalAttribute;
 
 /**
  * Created by liumeng on 2016/3/27.
